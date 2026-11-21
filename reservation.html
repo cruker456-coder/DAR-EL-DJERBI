@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Dar El Djerbi - Restaurant traditionnel tunisien"
+    />
+    <title>Dar El Djerbi | Réservation</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="site-header">
+      <div class="container nav-container">
+        <p class="brand-logo">DAR EL DJERBI</p>
+
+        <nav class="main-navigation">
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="horaires.html">Horaires</a></li>
+            <li><a href="reservation.html" class="active">Réservation</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="reservation-page-background">
+      <section class="reservation-section">
+        <div class="container">
+          <div class="reservation-card">
+            <h2>Table Reservation Form</h2>
+
+            <form class="reservation-form" action="#" method="post" novalidate>
+              <div class="form-group">
+                <label for="full-name">FULL NAME:</label>
+                <input
+                  type="text"
+                  id="full-name"
+                  name="full_name"
+                  placeholder="Ex: Mohamed Ali"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">EMAIL ADDRESS:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="exemple@email.com"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="guests">NUMBER OF GUESTS:</label>
+                <input
+                  type="number"
+                  id="guests"
+                  name="guests"
+                  min="1"
+                  max="30"
+                  placeholder="Ex: 4"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="reservation-datetime">RESERVATION DATE &amp; TIME:</label>
+                <input
+                  type="datetime-local"
+                  id="reservation-datetime"
+                  name="reservation_datetime"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn-reservation-submit">SUBMIT</button>
+            </form>
+
+            <div id="reservation-confirmation" class="reservation-confirmation" style="display: none;"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-flex">
+        <p>&copy; 2026 Dar El Djerbi - Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <script src="reservation.js"></script>
+</body>
+</html>
