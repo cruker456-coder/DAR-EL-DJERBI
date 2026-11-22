@@ -1,0 +1,835 @@
+:root {
+    --tunisia-red: #C8102E;
+    --tunisia-dark-red: #8A0B1F;
+    --clean-white: #FFFFFF;
+    --text-main: #FFFFFF;
+    --transition-smooth: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100vh;
+    overflow-x: clip;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #110A09;
+    color: var(--text-main);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- شريط التنقل المثبت في كل الصفحات --- */
+.site-header {
+    background-color: var(--tunisia-dark-red);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.brand-logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--clean-white);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.main-navigation ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+}
+
+.main-navigation a,
+.main-navigation button {
+    text-decoration: none;
+    color: var(--clean-white);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-smooth);
+    background: none;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.main-navigation a:hover,
+.main-navigation a.active,
+.main-navigation button:hover {
+    color: #ffcccc;
+    border-bottom: 2px solid var(--clean-white);
+    padding-bottom: 3px;
+}
+
+/* --- قسم الهيرو (Accueil) --- */
+.tunisian-hero-luxury {
+    position: relative;
+    flex: 1 0 auto;
+    min-height: 90vh;
+    padding-top: 90px;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.253)), url('images/dar-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    display: none;
+}
+
+.hero-circular-dish {
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    overflow: hidden;
+    z-index: 2;
+    top: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-circular-dish img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+    filter: contrast(1.15) brightness(1.05);
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 950px;
+    margin-top: 140px;
+}
+
+.hero-text-box h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+    line-height: 1.1;
+}
+
+.hero-text-box p {
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+    font-weight: 500;
+}
+
+.hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 0.85rem 1.8rem;
+    border-radius: 4px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background-color: var(--tunisia-red);
+    color: var(--clean-white);
+    border: 1px solid var(--tunisia-red);
+    box-shadow: 0 4px 15px rgba(200, 16, 46, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: var(--tunisia-dark-red);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--clean-white);
+    border: 1px solid var(--clean-white);
+    backdrop-filter: blur(4px);
+}
+
+.btn-secondary:hover {
+    background-color: var(--clean-white);
+    color: #1A1210;
+}
+
+/* --- الفوتر (Footer) --- */
+.site-footer {
+    margin-top: auto;
+    flex-shrink: 0;
+    background-color: #110A09;
+    color: #aaaaaa;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    border-top: 3px solid var(--tunisia-red);
+    text-align: center;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* --- صفحة القائمة (Menu) --- */
+.menu-page-background {
+    flex: 1 0 auto;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.253)), url('images/dar-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 95px 0 40px;
+}
+
+.menu-section-title {
+    text-align: center;
+    margin-bottom: 35px;
+    color: var(--clean-white);
+}
+
+.menu-section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.menu-section-title p {
+    font-size: 1.1rem;
+    color: #f0f0f0;
+}
+
+.menu1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dish-card,
+.couscous-card {
+    background: rgba(26, 18, 16, 0.85);
+    border: 1px solid rgba(200, 16, 46, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dish-card:hover,
+.couscous-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--tunisia-red);
+    box-shadow: 0 12px 30px rgba(200, 16, 46, 0.3);
+}
+
+.dish-image-wrapper {
+    width: 100%;
+    height: 230px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dish-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+}
+
+.dish-info {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to top, rgba(17, 10, 9, 0.95), rgba(26, 18, 16, 0.85));
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dish-info h3 {
+    font-size: 1.05rem;
+    color: var(--clean-white);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.dish-price {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #ff4d4d;
+    background: rgba(200, 16, 46, 0.15);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(200, 16, 46, 0.4);
+    white-space: nowrap;
+}
+
+.cou {
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+}
+
+.couscous-card {
+    max-width: 100%;
+}
+
+.couscous-card .dish-image-wrapper {
+    height: 280px;
+}
+
+/* --- صفحة أوقات العمل (Horaires) --- */
+.horaires-table {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(26, 18, 16, 0.88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(200, 16, 46, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    overflow: hidden;
+    color: var(--clean-white);
+}
+
+.horaires-table thead {
+    background: linear-gradient(to right, var(--tunisia-dark-red), var(--tunisia-red));
+}
+
+.horaires-table thead tr,
+.horaires-table th {
+    background: transparent !important;
+}
+
+.horaires-table th,
+.horaires-table td {
+    padding: 18px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 1.05rem;
+}
+
+.horaires-table th {
+    background: linear-gradient(to right, var(--tunisia-dark-red), var(--tunisia-red));
+    color: var(--clean-white);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+}
+
+.horaires-table th:last-child,
+.horaires-table td:last-child {
+    text-align: right;
+}
+
+.horaires-table td:first-child {
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f3e5d8;
+}
+
+.horaires-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.horaires-table tr:hover {
+    background-color: rgba(200, 16, 46, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.horaires-table tr:last-child td {
+    border-bottom: none;
+}
+
+.horaires-table tr:last-child td:last-child {
+    color: #ff4d4d;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+/* --- خلفية صفحة أوقات العمل (Horaires) --- */
+.horaires-page-background {
+    flex: 1 0 auto;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.253)), url('images/dar-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 95px 0 40px;
+    display: flex;
+    align-items: center;
+}
+
+.horaires-section {
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.horaires-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    color: var(--clean-white);
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+}
+
+/* --- صفحة ونموذج حجز الطاولة (Table Reservation Form) --- */
+.reservation-page-background {
+    flex: 1 0 auto;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.253)), url('images/dar-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 95px 0 50px;
+    display: flex;
+    align-items: center;
+}
+
+.reservation-section {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.reservation-card {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 38px 35px;
+    background: rgba(26, 18, 16, 0.88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(200, 16, 46, 0.45);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    color: var(--clean-white);
+}
+
+.reservation-card h2 {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 28px;
+    color: var(--clean-white);
+    letter-spacing: 0.5px;
+}
+
+.reservation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #f3e5d8;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: rgba(17, 10, 9, 0.75);
+    color: var(--clean-white);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--tunisia-red);
+    background-color: rgba(17, 10, 9, 0.95);
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.25);
+}
+
+.form-group input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.btn-reservation-submit {
+    margin-top: 10px;
+    width: 100%;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--tunisia-red);
+    color: var(--clean-white);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(200, 16, 46, 0.35);
+    transition: var(--transition-smooth);
+}
+
+.btn-reservation-submit:hover {
+    background-color: var(--tunisia-dark-red);
+    transform: translateY(-2px);
+}
+
+.reservation-confirmation {
+    margin-top: 20px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.reservation-confirmation.success {
+    background-color: rgba(46, 125, 50, 0.22);
+    border: 1px solid rgba(129, 199, 132, 0.6);
+    color: #e8f5e9;
+}
+
+.reservation-confirmation.error {
+    background-color: rgba(200, 16, 46, 0.22);
+    border: 1px solid rgba(255, 77, 77, 0.6);
+    color: #ffccd5;
+}
+
+/* --- صفحة التواصل (Contact) --- */
+.contact-page-background {
+    flex: 1 0 auto;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.253)), url('images/dar-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 95px 0 50px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-section {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.contact-card {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 38px 40px;
+    background: rgba(26, 18, 16, 0.88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(200, 16, 46, 0.45);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    color: var(--clean-white);
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.contact-header h2 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    color: var(--clean-white);
+}
+
+.contact-header p {
+    font-size: 0.98rem;
+    color: #f3e5d8;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 36px;
+    align-items: start;
+}
+
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: 6px;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: #f3e5d8;
+    padding: 10px 14px;
+    background: rgba(17, 10, 9, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+}
+
+.contact-info-item:hover {
+    border-color: var(--tunisia-red);
+    background-color: rgba(200, 16, 46, 0.15);
+}
+
+.contact-info-item a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.contact-info-item a:hover {
+    color: var(--clean-white);
+    text-decoration: underline;
+}
+
+.contact-icon-img,
+.contact-info-item img {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    object-fit: contain;
+    padding: 5px;
+    background-color: rgba(200, 16, 46, 0.22);
+    border: 1px solid rgba(200, 16, 46, 0.5);
+    flex-shrink: 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background-color: rgba(17, 10, 9, 0.75);
+    color: var(--clean-white);
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: var(--transition-smooth);
+}
+
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--tunisia-red);
+    background-color: rgba(17, 10, 9, 0.95);
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.25);
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 0 5px;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.65rem 0;
+    }
+
+    .brand-logo {
+        font-size: 1.15rem;
+        letter-spacing: 1.5px;
+    }
+
+    .main-navigation ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.55rem 1rem;
+    }
+
+    .main-navigation a,
+    .main-navigation button {
+        font-size: 0.75rem;
+        letter-spacing: 0.4px;
+    }
+
+    .menu-page-background,
+    .horaires-page-background,
+    .reservation-page-background,
+    .contact-page-background {
+        padding-top: 105px;
+    }
+
+    .hero-circular-dish {
+        width: 280px;
+        height: 280px;
+    }
+
+    .hero-text-box h1 {
+        font-size: 2.1rem;
+    }
+
+    .footer-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu1 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .dish-info {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .horaires-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .horaires-table {
+        max-width: 100%;
+        font-size: 0.85rem;
+    }
+
+    .horaires-table th,
+    .horaires-table td {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+    }
+
+    .horaires-table td:last-child {
+        font-size: 0.8rem;
+        letter-spacing: -0.5px;
+    }
+
+    .reservation-card {
+        padding: 26px 20px;
+    }
+
+    .reservation-card h2 {
+        font-size: 1.45rem;
+    }
+
+    .contact-card {
+        padding: 26px 20px;
+    }
+
+    .contact-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        width: 94%;
+    }
+
+    .brand-logo {
+        font-size: 1.15rem;
+        letter-spacing: 1px;
+    }
+
+    .main-navigation ul {
+        gap: 0.9rem;
+    }
+
+    .main-navigation a,
+    .main-navigation button {
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+
+    .hero-circular-dish {
+        width: 360px;
+        height: 360px;
+    }
+
+    .hero-text-box h1 {
+        font-size: 2.6rem;
+    }
+
+    .contact-grid {
+        gap: 24px;
+    }
+}

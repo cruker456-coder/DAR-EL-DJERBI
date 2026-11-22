@@ -1,64 +1,132 @@
-// الخطوة 1: الوصول إلى عناصر الصفحة
-const reservationForm = document.querySelector(".reservation-form");
-const fullNameInput = document.getElementById("full-name");
-const emailInput = document.getElementById("email");
-const guestsInput = document.getElementById("guests");
-const dateTimeInput = document.getElementById("reservation-datetime");
-const confirmationBox = document.getElementById("reservation-confirmation");
+// --- 1. منطق نموذج الحجز (Réservation) ---
+let reservationForm = document.querySelector(".reservation-form");
+let fullNameInput = document.getElementById("full-name");
+let emailInput = document.getElementById("email");
+let guestsInput = document.getElementById("guests");
+let dateTimeInput = document.getElementById("reservation-datetime");
+let confirmationBox = document.getElementById("reservation-confirmation");
 
-// دالة مساعدة لإظهار رسالة خطأ حمراء في الصندوق
 function showError(message) {
+    if (!confirmationBox) {
+        return;
+    }
     confirmationBox.style.display = "block";
     confirmationBox.className = "reservation-confirmation error";
     confirmationBox.textContent = message;
 }
 
-// الخطوة 2: الاستماع لحدث إرسال النموذج
-reservationForm.addEventListener("submit", function (event) {
-    event.preventDefault();
+if (reservationForm && fullNameInput && emailInput && guestsInput && dateTimeInput && confirmationBox) {
+    reservationForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    // الخطوة 3: قراءة القيم
-    const fullName = fullNameInput.value.trim();
-    const email = emailInput.value.trim();
-    const guests = guestsInput.value.trim();
-    const dateTime = dateTimeInput.value;
+        let fullName = fullNameInput.value.trim();
+        let email = emailInput.value.trim();
+        let guests = guestsInput.value.trim();
+        let dateTime = dateTimeInput.value;
 
-    // الخطوة 4: التحقق من الاسم الكامل
-    if (fullName.length < 3) {
-        showError("Veuillez entrer un nom complet valide (au moins 3 caractères).");
-        return;
+        if (fullName.length < 3) {
+            showError("Veuillez entrer un nom complet valide (au moins 3 caractères).");
+            return;
+        }
+
+        if (!email.includes("@") || !email.includes(".")) {
+            showError("Veuillez saisir une adresse e-mail valide (ex: nom@domaine.com).");
+            return;
+        }
+
+        let guestsNumber = Number(guests);
+        if (guests === "" || isNaN(guestsNumber) || guestsNumber < 1 || guestsNumber > 30) {
+            showError("Veuillez entrer un nombre de personnes valide (entre 1 et 30).");
+            return;
+        }
+
+        if (dateTime === "") {
+            showError("Veuillez choisir une date et une heure de réservation.");
+            return;
+        }
+
+        let formattedDateTime = dateTime.replace("T", " à ");
+        confirmationBox.style.display = "block";
+        confirmationBox.className = "reservation-confirmation success";
+        confirmationBox.innerHTML =
+            "<strong>Réservation enregistrée !</strong><br>" +
+            "Nom : " + fullName + "<br>" +
+            "Email : " + email + "<br>" +
+            "Nombre de personnes : " + guestsNumber + "<br>" +
+            "Date et heure : " + formattedDateTime;
+
+        reservationForm.reset();
+    });
+}
+
+// --- 2. منطق نموذج التواصل (Contact) ---
+let formulaireContact = document.querySelector(".contact-form");
+let zoneConfirmation = document.getElementById("contactConfirmation");
+
+function afficherErreurContact(texteErreur) {
+    zoneConfirmation.className = "reservation-confirmation error";
+    zoneConfirmation.textContent = texteErreur;
+    zoneConfirmation.style.display = "block";
+}
+
+function verifierEmailSimple(adresseEmail) {
+    if (adresseEmail === "" || adresseEmail.includes(" ")) {
+        return false;
     }
 
-    // الخطوة 5: التحقق من صيغة البريد الإلكتروني (وجود @ ونقطة)
-    if (!email.includes("@") || !email.includes(".")) {
-        showError("Veuillez saisir une adresse e-mail valide (ex: nom@domaine.com).");
-        return;
+    let positionArobase = adresseEmail.indexOf("@");
+    if (positionArobase <= 0) {
+        return false;
     }
 
-    // الخطوة 6: التحقق من عدد الضيوف (يجب أن يكون رقماً بين 1 و 30)
-    const guestsNumber = Number(guests);
-    if (guests === "" || isNaN(guestsNumber) || guestsNumber < 1 || guestsNumber > 30) {
-        showError("Veuillez entrer un nombre de personnes valide (entre 1 et 30).");
-        return;
+    // التأكد من وجود '@' واحدة فقط
+    if (adresseEmail.indexOf("@", positionArobase + 1) !== -1) {
+        return false;
     }
 
-    // الخطوة 7: التحقق من إدخال التاريخ والوقت
-    if (dateTime === "") {
-        showError("Veuillez choisir une date et une heure de réservation.");
-        return;
+    let partieDomaine = adresseEmail.slice(positionArobase + 1);
+    let positionPoint = partieDomaine.indexOf(".");
+
+    // يجب أن يحتوي النطاق بعد '@' على نقطة، ولا يبدأ بها ولا ينتهي بها
+    if (positionPoint <= 0 || partieDomaine.endsWith(".")) {
+        return false;
     }
 
-    // الخطوة 8: إذا كانت جميع البيانات صحيحة، نعرض رسالة النجاح الخضراء
-    const formattedDateTime = dateTime.replace("T", " à ");
-    confirmationBox.style.display = "block";
-    confirmationBox.className = "reservation-confirmation success";
-    confirmationBox.innerHTML =
-        "<strong>Réservation enregistrée !</strong><br>" +
-        "Nom : " + fullName + "<br>" +
-        "Email : " + email + "<br>" +
-        "Nombre de personnes : " + guestsNumber + "<br>" +
-        "Date et heure : " + formattedDateTime;
+    return true;
+}
 
-    // الخطوة 9: تفريغ الحقول
-    reservationForm.reset();
-});
+if (formulaireContact && zoneConfirmation) {
+    formulaireContact.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let champNom = document.getElementById("contactName");
+        let champEmail = document.getElementById("contactEmail");
+        let champMessage = document.getElementById("contactMessage");
+
+        let nom = champNom.value.trim();
+        let email = champEmail.value.trim();
+        let message = champMessage.value.trim();
+
+        if (nom.length < 2) {
+            afficherErreurContact("Veuillez entrer un nom valide (au moins 2 caractères).");
+            return;
+        }
+
+        if (!verifierEmailSimple(email)) {
+            afficherErreurContact("Veuillez saisir une adresse e-mail valide (ex: nom@gmail.com).");
+            return;
+        }
+
+        if (message.length < 5) {
+            afficherErreurContact("Veuillez écrire un message d'au moins 5 caractères.");
+            return;
+        }
+
+        zoneConfirmation.className = "reservation-confirmation success";
+        zoneConfirmation.innerHTML =
+            "Merci <strong>" + nom + "</strong>, votre message a bien été envoyé. Nous vous répondrons sur <strong>" + email + "</strong>.";
+        zoneConfirmation.style.display = "block";
+
+        formulaireContact.reset();
+    });
+}
