@@ -1,4 +1,4 @@
-// --- 1. منطق نموذج الحجز (Réservation) ---
+
 let reservationForm = document.querySelector(".reservation-form");
 let fullNameInput = document.getElementById("full-name");
 let emailInput = document.getElementById("email");
@@ -59,7 +59,7 @@ if (reservationForm && fullNameInput && emailInput && guestsInput && dateTimeInp
     });
 }
 
-// --- 2. منطق نموذج التواصل (Contact) ---
+
 let formulaireContact = document.querySelector(".contact-form");
 let zoneConfirmation = document.getElementById("contactConfirmation");
 
@@ -87,7 +87,7 @@ function verifierEmailSimple(adresseEmail) {
     let partieDomaine = adresseEmail.slice(positionArobase + 1);
     let positionPoint = partieDomaine.indexOf(".");
 
-    // يجب أن يحتوي النطاق بعد '@' على نقطة، ولا يبدأ بها ولا ينتهي بها
+    
     if (positionPoint <= 0 || partieDomaine.endsWith(".")) {
         return false;
     }
